@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
   root 'static_pages#index'
-  get 'static_pages', to: 'static_pages#index'
   get 'static_pages/show'
   get 'static_pages/new'
   get 'static_pages/edit'
