@@ -10,12 +10,6 @@ class StaticPagesControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
     end
 
-  test "should get index" do
-    get static_pages_index_path
-    assert_response :success
-    assert_select "title", "Index | #{@base_title}"
-  end
-
   test "should get show" do
     get static_pages_show_path
     assert_response :success

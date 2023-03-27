@@ -31,3 +31,11 @@
 
 en:
   hello: "Hello world"
+  home: "Home"
+  show: "Show"
+  create: "Create"
+  edit: "Edit"
+  home: "Home"
+  home: "Home"
+  cover: "Cover"
+  introduce: Cover template for Bootstrap, by @mdo.

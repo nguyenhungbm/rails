@@ -1,16 +1,40 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= yield(:title) %> | Ruby on Rails Tutorial Sample App</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
+    <title><%= full_title(yield(:title)) %></title>
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <%= csrf_meta_tags %>
+      <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
-    <%= javascript_importmap_tags %>
+      <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+      <%= javascript_importmap_tags %>
   </head>
 
-  <body>
-    <%= yield %>
+  <body class="text-center">
+
+    <div class="cover-container d-flex h-100 p-3 mx-auto flex-column">
+      <header class="masthead mb-auto">
+        <div class="inner">
+          <h3 class="masthead-brand"><%= t("cover") %></h3>
+          <nav class="nav nav-masthead justify-content-center">
+            <%= link_to t("home"), root_path, class: "nav-link active" %>
+            <%= link_to t("show"), static_pages_show_path, class: "nav-link" %>
+            <%= link_to t("create"), static_pages_new_path, class: "nav-link" %>
+            <%= link_to t("edit"), static_pages_edit_path, class: "nav-link" %>
+          </nav>
+        </div>
+      </header>
+
+      <main role="main" class="inner cover">
+        <%= yield %>
+      </main>
+
+      <footer class="mastfoot mt-auto">
+        <div class="inner">
+          <p><%= t("introduce") %></p>
+        </div>
+      </footer>
+    </div>
+
   </body>
-</html>
+  </html>
