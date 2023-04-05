@@ -23,10 +23,14 @@ gem "turbo-rails"
 
 # Hotwire's modest JavaScript framework [https://stimulus.hotwired.dev]
 gem "stimulus-rails"
-
+gem "jquery-rails"
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 gem "jbuilder"
-
+gem "will_paginate"
+gem "bootstrap-will_paginate", "~>1.0.0"
+gem "image_processing", "~> 1.2"
+gem "mini_magick", "4.9.5"
+gem "active_storage_validations", "0.8.2"
 # Use Redis adapter to run Action Cable in production
 # gem "redis", "~> 4.0"
 
@@ -41,8 +45,8 @@ gem "tzinfo-data", platforms: %i[ mingw mswin x64_mingw jruby ]
 
 # Reduces boot times through caching; required in config/boot.rb
 gem "bootsnap", require: false
-gem 'bootstrap'
-gem 'rails-controller-testing'
+gem "bootstrap"
+gem "rails-controller-testing"
 gem "devise"
 # Use Sass to process CSS
 # gem "sassc-rails"
