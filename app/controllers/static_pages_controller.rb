@@ -1,4 +1,6 @@
 class StaticPagesController < ApplicationController
+  before_action :authorized, only: [:show, :new, :edit]
+
   def index
   end
 

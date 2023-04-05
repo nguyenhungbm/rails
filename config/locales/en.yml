@@ -38,4 +38,9 @@ en:
   home: "Home"
   home: "Home"
   cover: "Cover"
-  introduce: Cover template for Bootstrap, by @mdo.
+  introduce: "Cover template for Bootstrap, by @mdo."
+  password: "Mật khẩu"
+  password_confirmation: "Xác nhận mật khẩu"
+  name: "Tên"
+  phone: "Sđt"
+  logout: "Đăng xuất"
