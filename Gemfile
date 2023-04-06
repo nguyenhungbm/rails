@@ -48,6 +48,7 @@ gem "bootsnap", require: false
 gem "bootstrap"
 gem "rails-controller-testing"
 gem "devise"
+gem "acts-as-taggable-on"
 # Use Sass to process CSS
 # gem "sassc-rails"
 
