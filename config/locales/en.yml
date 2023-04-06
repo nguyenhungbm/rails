@@ -36,6 +36,7 @@ en:
   create: "Create"
   edit: "Edit"
   delete: "Delete"
+  save: "Save changes"
   home: "Home"
   cover: "Cover"
   confirm: "Are you sure?"
@@ -54,3 +55,4 @@ en:
     deleted: "Micropost deleted"
     new: "Compose new micropost..."
   view_profile: "view my profile"
+  update_profile: "Update profile"
