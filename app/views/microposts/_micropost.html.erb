@@ -5,6 +5,9 @@
         <%= micropost.content %>
         <%= image_tag micropost.display_image if micropost.image.attached? %>
     </span>
+    <span class="tags">
+        <%= micropost.tag_list %>
+    </span>
     <span class="timestamp">
         Posted <%= time_ago_in_words(micropost.created_at) %> ago.
         <% if current_user %>
