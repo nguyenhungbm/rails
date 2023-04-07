@@ -58,3 +58,4 @@ en:
   update_profile: "Update profile"
   post_ago: "Posted %{time} ago."
   comment: "Comment"
+  reply: "Reply"

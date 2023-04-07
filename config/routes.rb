@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   resources :users
   resources :microposts, only: [:create, :destroy]
   resources :comments, only: [:create, :destroy]
+  get '/comments/new/(:parent_id)', to: 'comments#new', as: :new_comment
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")

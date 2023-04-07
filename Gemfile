@@ -49,6 +49,7 @@ gem "bootstrap"
 gem "rails-controller-testing"
 gem "devise"
 gem "acts-as-taggable-on"
+gem "closure_tree"
 # Use Sass to process CSS
 # gem "sassc-rails"
 

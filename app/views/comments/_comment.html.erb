@@ -1,7 +1,18 @@
- <% comments.each do |comment| %>
-    <p><%= comment.body %></p>
-    <span class="timestamp">
-        <%= t("post_ago", time: time_ago_in_words(comment.created_at)) %>
-         <%= button_to t("Delete"), comment, method: :delete %>
-    </span>
+<% comments.each do |comment| %>
+<p><%= comment.body %></p>
+<span class="timestamp">
+    <%= t("post_ago", time: time_ago_in_words(comment.created_at)) %>
+    <% if !comment.parent %>
+        <p><%= link_to t("reply"), new_comment_path(comment.id) %></p>
+    <% end %>
+    <%= button_to t("Delete"), comment, method: :delete %>
+    <% if comment.parent %>
+        <%= t("reply") %>
+        <p class="text-white"><%= comment.parent.body %></p>
+        <span class="timestamp">
+            <%= t("post_ago", time: time_ago_in_words(comment.created_at)) %>
+            <%= button_to t("Delete"), comment.parent, method: :delete %>
+        </span>
+    <% end %>
+</span>
 <% end %>

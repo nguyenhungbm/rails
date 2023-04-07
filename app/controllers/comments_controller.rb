@@ -1,12 +1,16 @@
 class CommentsController < ApplicationController
+  before_action :authorized
 
-  # POST /comments or /comments.json
+  def new
+    @comment = Comment.new(parent_id: params[:parent_id])
+  end
+
   def create
     micropost = Micropost.find_by(params[:id])
     @comment = micropost.comments.build(comment_params)
     @comment.commenter_id = current_user.id
     @comment.save
-    redirect_to root_url
+    redirect_to micropost
   end
 
   def destroy
@@ -18,8 +22,7 @@ class CommentsController < ApplicationController
 
   private
 
-  # Only allow a list of trusted parameters through.
   def comment_params
-    params.require(:comment).permit(:commenter_id, :body, :micropost_id)
+    params.require(:comment).permit(:commenter_id, :body, :micropost_id, :parent_id)
   end
 end

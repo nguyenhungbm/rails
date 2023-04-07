@@ -1,6 +1,6 @@
 class Micropost < ApplicationRecord
   belongs_to :user
-  has_many :comments, :dependent => :destroy
+  has_many :comments, dependent: :destroy
   acts_as_taggable_on :tags
   has_one_attached :image
   validates :content, presence: true, length: { maximum: 140 }
