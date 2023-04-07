@@ -56,3 +56,6 @@ en:
     new: "Compose new micropost..."
   view_profile: "view my profile"
   update_profile: "Update profile"
+  post_ago: "Posted %{time} ago."
+  comment: "Comment"
+  reply: "Reply"
