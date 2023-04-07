@@ -9,9 +9,14 @@
         <%= micropost.tag_list %>
     </span>
     <span class="timestamp">
-        Posted <%= time_ago_in_words(micropost.created_at) %> ago.
+        <%= t("post_ago", time: time_ago_in_words(micropost.created_at)) %>
         <% if current_user %>
         <%= button_to t("Delete"), micropost, data: { turbo_confirm: t("confirm") }, method: :delete %>
         <% end %>
     </span>
+    <%= t("comment") %>
+    <div id="comments">
+        <%= render "comments/comment", comments: micropost.comments %>
+    </div>
+    <%= render "shared/comment_form" %>
 </li>
