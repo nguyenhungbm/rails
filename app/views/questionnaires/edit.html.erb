@@ -1,0 +1,10 @@
+<h1><%= t("questionnaire.edit") %></h1>
+
+<%= render "form", questionnaire: @questionnaire %>
+
+<br>
+
+<div>
+  <%= link_to t("questionnaire.show"), @questionnaire %> |
+  <%= link_to t("questionnaire.return"), questionnaires_path %>
+</div>
