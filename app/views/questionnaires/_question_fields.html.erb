@@ -1,37 +1,23 @@
 <div class="nested-fields box" data-controller="dynamic-select">
   <div class="form-group">
-    <br>
-    <%= form.select :question_type,
-                    options_for_select(Question.question_type_select, selected: form.object.question_type),
-                    {},
-                    "data-dynamic-select-target": "select",
-                    "data-action": "dynamic-select#selected" %>
+    <br> 
   </div>
+    <%= f.input :question_type, placeholder: t("question"), class: "form-control" %>
 
   <div class="form-group">
-    <%= form.hidden_field :_destroy %>
-    <%= form.text_area :name, placeholder: t("question"), class: "form-control" %>
+    <%= f.input :name, placeholder: t("question"), class: "form-control" %>
     <small>
       <%= link_to t("delete"), "#", data: { action: "click->nested-form#remove_association" } %>
     </small>
   </div>
 
   <div data-controller="nested-form" data-dynamic-select-target="choice">
-    <template data-nested-form-target="template">
-      <%= form.fields_for :answers, Answer.new, child_index: "TEMPLATE_RECORD" do |answer| %>
-        <%= render "answer_fields", form: answer %>
-      <% end %>
-    </template>
 
-    <%= form.fields_for :answers do |answer| %>
-      <%= render "answer_fields", form: answer %>
+    <%= f.fields_for :answers do |answer| %>
+      <%= render "answer_fields", f: answer %>
     <% end %>
 
-    <div data-nested-form-target="add_item">
-      <%= link_to t("create"), "#", data: { action: "nested-form#add_association" } %>
-    </div>
-  </div>
+          <%= link_to_add_association 'add answers', f, :answers %>
 
-  <div data-controller="nested-form" data-dynamic-select-target="long">
   </div>
 </div>
