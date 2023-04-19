@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<h1><%= t("questions") %></h1>
+
+<div id="questions">
+  <% @questions.each do |question| %>
+    <%= render question %>
+    <p>
+      <%= link_to t("question.show"), question %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to t("question.new"), new_question_path %>

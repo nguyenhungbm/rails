@@ -10,8 +10,8 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_04_07_084747) do
-  create_table "active_storage_attachments", charset: "utf8mb4", force: :cascade do |t|
+ActiveRecord::Schema[7.0].define(version: 2023_04_10_061744) do
+  create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
     t.bigint "record_id", null: false
@@ -21,7 +21,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_07_084747) do
     t.index ["record_type", "record_id", "name", "blob_id"], name: "index_active_storage_attachments_uniqueness", unique: true
   end
 
-  create_table "active_storage_blobs", charset: "utf8mb4", force: :cascade do |t|
+  create_table "active_storage_blobs", force: :cascade do |t|
     t.string "key", null: false
     t.string "filename", null: false
     t.string "content_type"
@@ -33,13 +33,21 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_07_084747) do
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
-  create_table "active_storage_variant_records", charset: "utf8mb4", force: :cascade do |t|
+  create_table "active_storage_variant_records", force: :cascade do |t|
     t.bigint "blob_id", null: false
     t.string "variation_digest", null: false
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
-  create_table "comment_hierarchies", id: false, charset: "utf8mb4", force: :cascade do |t|
+  create_table "answers", force: :cascade do |t|
+    t.integer "question_id", null: false
+    t.text "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["question_id"], name: "index_answers_on_question_id"
+  end
+
+  create_table "comment_hierarchies", id: false, force: :cascade do |t|
     t.integer "ancestor_id", null: false
     t.integer "descendant_id", null: false
     t.integer "generations", null: false
@@ -47,31 +55,41 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_07_084747) do
     t.index ["descendant_id"], name: "comment_desc_idx"
   end
 
-  create_table "comments", charset: "utf8mb4", force: :cascade do |t|
+  create_table "comments", force: :cascade do |t|
     t.integer "commenter_id"
     t.text "body"
-    t.bigint "micropost_id", null: false
+    t.integer "micropost_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "parent_id"
     t.index ["micropost_id"], name: "index_comments_on_micropost_id"
   end
 
-  create_table "microposts", charset: "utf8mb4", force: :cascade do |t|
+  create_table "microposts", force: :cascade do |t|
     t.text "content"
-    t.bigint "user_id", null: false
+    t.integer "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id", "created_at"], name: "index_microposts_on_user_id_and_created_at"
     t.index ["user_id"], name: "index_microposts_on_user_id"
   end
 
-  create_table "taggings", charset: "utf8mb4", force: :cascade do |t|
-    t.bigint "tag_id"
+  create_table "questions", force: :cascade do |t|
+    t.text "name"
+    t.integer "question_type"
+    t.boolean "required"
+    t.integer "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_questions_on_user_id"
+  end
+
+  create_table "taggings", force: :cascade do |t|
+    t.integer "tag_id"
     t.string "taggable_type"
-    t.bigint "taggable_id"
+    t.integer "taggable_id"
     t.string "tagger_type"
-    t.bigint "tagger_id"
+    t.integer "tagger_id"
     t.string "context", limit: 128
     t.datetime "created_at", precision: nil
     t.string "tenant", limit: 128
@@ -89,15 +107,14 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_07_084747) do
     t.index ["tenant"], name: "index_taggings_on_tenant"
   end
 
-  create_table "tags", charset: "utf8mb4", force: :cascade do |t|
-    t.string "name", collation: "utf8_bin"
+  create_table "tags", force: :cascade do |t|
+    t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "taggings_count", default: 0
-    t.index ["name"], name: "index_tags_on_name", unique: true
   end
 
-  create_table "users", charset: "utf8mb4", force: :cascade do |t|
+  create_table "users", force: :cascade do |t|
     t.string "name"
     t.string "email"
     t.string "phone"
@@ -117,7 +134,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_07_084747) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "answers", "questions"
   add_foreign_key "comments", "microposts"
   add_foreign_key "microposts", "users"
+  add_foreign_key "questions", "users"
   add_foreign_key "taggings", "tags"
 end
