@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+<%= form_for(@question, url: answer_questions_path(@question), html: { method: :post }) do |f| %>
+
+  <h1><%= t("questions") + " " + @question.name %></h1>
+
+  <% case @question.question_type %>
+    <% when "single_choice" %>
+      <% @question.answers.each do |answer| %>
+        <p>
+          <%= radio_button_tag 'answer', answer.id %>
+          <%= answer.name %>
+        </p>
+      <% end %>
+    <% when "multiple_choice" %>
+      <% @question.answers.each do |answer| %>
+        <p>
+          <%= check_box_tag 'answer', answer.id %>
+          <%= answer.name %>
+        </p>
+      <% end %>
+    <% when "long_answer" %>
+      <%= text_area_tag 'answer' %>
+  <% end %>
+  <% if @question.user_id == current_user.id %>
+    <%= link_to t("edit"), edit_question_path(@question) %> |
+  <% else %>
+      <%= f.submit t("answer"), class: 'btn btn-primary' %><br>
+  <% end %>
+  <%= link_to t("return"), questions_path %>
+<% end %>
