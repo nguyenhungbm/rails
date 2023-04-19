@@ -1,0 +1,10 @@
+<h1><%= t("question.edit") %></h1>
+
+<%= render "form", question: @question %>
+
+<br>
+
+<div>
+  <%= link_to t("question.show"), @question %> |
+  <%= link_to t("question.return"), questions_path %>
+</div>
