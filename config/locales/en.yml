@@ -59,6 +59,8 @@ en:
   comment: "Comment"
   answer: "Answer"
   reply: "Reply"
+  questionnaire: "Questionnaire"
+  questions: "Questions"
   question:
     add: "Add Question"
     new: "New question"
@@ -68,3 +70,4 @@ en:
     created: "question was successfully created."
     updated: "question was successfully updated."
     destroyed: "question was successfully destroyed."
+    select: "Select questions"

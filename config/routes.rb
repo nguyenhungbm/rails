@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :questionnaires
   resources :follows
   resources :questions
   devise_for :users

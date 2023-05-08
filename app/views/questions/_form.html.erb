@@ -30,7 +30,7 @@
         <%= render "answer_fields", form: answer %>
       <% end %>
 
-      <div data-nested-form-target="add_item">
+      <div data-nested-form-target="add_item" class="add_answer" >
         <%= link_to t("create"), "#", data: { action: "nested-form#add_association" } %>
       </div>
     </div>

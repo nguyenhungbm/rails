@@ -72,7 +72,7 @@ class QuestionsController < ApplicationController
       params.require(:question).permit(
           :question_type,
           :name,
-          answers_attributes: [:_destroy, :id, :name]
+          answers_attributes: [:_destroy, :id, :name, :is_correct]
       )
     end
 
@@ -81,7 +81,7 @@ class QuestionsController < ApplicationController
       params.require(:question).permit(
           :question_type,
           :name,
-          answers_attributes: [:_destroy, :id, :name]
+          answers_attributes: [:_destroy, :id, :name, :is_correct]
       )
     end
 end

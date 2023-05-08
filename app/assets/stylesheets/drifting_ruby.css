@@ -808,3 +808,11 @@ th {
   border: 1px solid transparent;
   border-radius: .25rem;
 }
+
+input {
+ margin: 20px 0;
+}
+
+li {
+  color: #000;
+}

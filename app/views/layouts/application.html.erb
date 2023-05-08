@@ -8,6 +8,9 @@
 
       <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
       <%= javascript_importmap_tags %>
+      <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+      <script src="https://unpkg.com/slim-select@latest/dist/slimselect.min.js"></script>
+    <link href="https://unpkg.com/slim-select@latest/dist/slimselect.css" rel="stylesheet"/>
   </head>
 
   <body>
@@ -17,12 +20,23 @@
         <div class="inner">
           <h3 class="masthead-brand"><%= t("cover") %></h3>
           <nav class="nav nav-masthead justify-content-center">
-            <%= link_to t("questions"), questions_path, class: "nav-link " + active_class(questions_path) %>
-            <%= link_to t("create"), static_pages_new_path, class: "nav-link " + active_class(static_pages_new_path) %>
-            <%= link_to t("edit"), static_pages_edit_path, class: "nav-link " + active_class(static_pages_edit_path) %>
+            <%= active_link_to questionnaires_path,  active: :inclusive, :class => 'nav-link' do %>
+                <%= t("questionnaire") %>
+            <% end %>
+            <%= active_link_to questions_path,  active: :inclusive, :class => 'nav-link' do %>
+                <%= t("questions") %>
+            <% end %>
+            <%= active_link_to static_pages_new_path,  active: :inclusive, :class => 'nav-link' do %>
+                <%= t("create") %>
+            <% end %>
+            <%= active_link_to static_pages_edit_path,  active: :inclusive, :class => 'nav-link' do %>
+                <%= t("edit") %>
+            <% end %>
             <% if user_signed_in? %>
-              <%= link_to current_user.name, root_path, class: "nav-link " + active_class(root_path) %>
-                <%= link_to t("logout"), destroy_user_session_path, data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "nav-link" %>
+              <%= active_link_to root_path,  active: :exact, :class => 'nav-link' do %>
+                  <%= current_user.name %>
+              <% end %>
+              <%= link_to t("logout"), destroy_user_session_path, data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "nav-link" %>
             <% else %>
               <%= link_to t("login"), new_user_session_path, class: "nav-link" %>
             <% end %>
@@ -42,4 +56,6 @@
     </div>
 
   </body>
+  <script src="https://code.jquery.com/jquery-3.6.4.js" integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
   </html>

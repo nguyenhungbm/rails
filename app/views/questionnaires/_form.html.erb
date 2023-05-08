@@ -1,0 +1,28 @@
+<%= form_with(model: questionnaire) do |form| %>
+  <% if questionnaire.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(questionnaire.errors.count, "error") %> prohibited this questionnaire from being saved:</h2>
+
+      <ul>
+        <% questionnaire.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :name, style: "display: block" %>
+    <%= form.text_field :name, class: "form-control" %>
+  </div>
+
+  <div>
+    <%= form.label :body, style: "display: block" %>
+    <%= form.text_field :body, class: "form-control" %>
+  </div>
+  <%= form.label :questions_id %><br>
+  <%= form.select :questions_id, Question.all.pluck(:name, :id), {}, { id: "selectElement", multiple: true } %>
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
