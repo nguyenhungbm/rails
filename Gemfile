@@ -10,7 +10,7 @@ gem "rails", "~> 7.0.4", ">= 7.0.4.3"
 gem "sprockets-rails"
 
 # Use sqlite3 as the database for Active Record
-gem "mysql2"
+gem "sqlite3"
 
 # Use the Puma web server [https://github.com/puma/puma]
 gem "puma", "~> 5.0"
@@ -51,7 +51,9 @@ gem "devise"
 gem "acts-as-taggable-on"
 gem "closure_tree"
 # Use Sass to process CSS
-# gem "sassc-rails"
+gem "sassc-rails"
+gem "font-awesome-sass"
+gem "active_link_to"
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
@@ -79,3 +81,5 @@ group :test do
   gem "selenium-webdriver"
   gem "webdrivers"
 end
+
+gem "hotwire-rails", "~> 0.1.3"

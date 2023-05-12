@@ -1,0 +1,44 @@
+<%= form_with(model: question) do |form| %>
+  <% if question.errors.any? %>
+    <% question.errors.full_messages.each do |message| %>
+        <p class="text-danger"><%= message %> </p>
+    <% end %>
+  <% end %>
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div class="nested-fields box" data-controller="dynamic-select">
+    <div class="form-group">
+      <br>
+      <%= form.select :question_type,
+                      options_for_select(Question.question_type_select, selected: form.object.question_type),
+                      {},
+                      "data-dynamic-select-target": "select",
+                      "data-action": "dynamic-select#selected" %>
+    </div>
+
+    <div data-controller="nested-form" data-dynamic-select-target="choice">
+      <template data-nested-form-target="template">
+        <%= form.fields_for :answers, Answer.new, child_index: "TEMPLATE_RECORD" do |answer| %>
+          <%= render "answer_fields", form: answer %>
+        <% end %>
+      </template>
+
+      <%= form.fields_for :answers do |answer| %>
+        <%= render "answer_fields", form: answer %>
+      <% end %>
+
+      <div data-nested-form-target="add_item" class="add_answer" >
+        <%= link_to t("create"), "#", data: { action: "nested-form#add_association" } %>
+      </div>
+    </div>
+
+    <div data-controller="nested-form" data-dynamic-select-target="long">
+    </div>
+  </div>
+  <div class="actions">
+       <%= form.submit class: "btn btn-primary" %>
+  </div>
+<% end %>

@@ -1,0 +1,10 @@
+<div class="nested-fields">
+  <div class="form-group">
+    <%= form.hidden_field :_destroy %>
+    <div class="d-flex align-items-center">
+      <%= form.check_box :is_correct, class: "is_correct" %>
+      <%= form.text_field :name, placeholder: t("answer"), class: "form-control" %>
+      <%= link_to simple_format('<i class="fa-xl fa fa-trash text-danger"></i>'), "#", data: { action: "click->nested-form#remove_association" } %>
+    </div>
+  </div>
+</div>
